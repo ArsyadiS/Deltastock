@@ -24,17 +24,6 @@ class MasterDataSeeder extends Seeder
 
         foreach ($divisions as $division) {
             $div = Division::firstOrCreate(['code' => $division['code']], $division);
-
-            //gudang
-            Warehouse::firstOrCreate(
-                ['code' => 'GDG-' . $division['code']],
-                [
-                    'division_id' => $div->id,
-                    'name' => 'Gudang ' . $division['name'],
-                    'code' => 'GDG-' . $division['code'],
-                    'description' => 'Gudang Utama ' . $division['name'],
-                ]
-            );
         }
 
         //satuan

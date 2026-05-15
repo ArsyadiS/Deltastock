@@ -46,4 +46,25 @@ class Category extends Model
             'description'   => $data['description'] ?? null,
             'active'        => $data['active'] ?? true,
         ]);
-}
+
+        return $this;
+    }
+
+    public function updateCategory(array $data): self
+    {
+        $this->update([
+            'division_id'   => $data['division_id'],
+            'name'          => $data['name'],
+            'description'   => $data['description'] ?? null,
+            'active'        => $data['active'] ?? true,
+        ]);
+
+        return $this;
+    }
+
+    public function canBeDeleted(): bool
+    {
+        return $this->items()->count() === 0 && 
+        $this->division()->count() === 0;
+    }
+}    

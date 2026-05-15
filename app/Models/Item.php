@@ -68,4 +68,6 @@ class Item extends Model
     {
         return $this->batches()->sum('current_stock');
     }
+
+    
 }
