@@ -23,15 +23,13 @@
             
             @include('layouts.navigation')
             
-            @isset($header)
-            <header class="bg-white border-b border-zinc-200">
+        @isset($header)
+            <header class="bg-slate-900 border-b border-slate-800 shadow-sm"> {{-- Ganti bg-white jadi bg-slate-900 --}}
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    <h2 class="font-semibold text-xl text-zinc-800 leading-tight">
-                        {{ $header }}
-                    </h2>
+                    {{ $header }}
                 </div>
             </header>
-            @endisset
+        @endisset
             
             <main class="p-6">
                 <div class="max-w-7xl mx-auto">

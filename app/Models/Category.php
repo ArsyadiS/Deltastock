@@ -30,4 +30,20 @@ class Category extends Model
     {
         return $this->hasMany(Item::class);
     }
+
+    // ── Scopes ─────────────────────────────────
+    public function scopeActive($query)
+    {
+        return $query->where('active', true);
+    }
+
+    // ── Business Logic ─────────────────────────
+    public static function createCategory(array $data): self
+    {
+        return self::create([
+            'division_id'   => $data['division_id'],
+            'name'          => $data['name'],
+            'description'   => $data['description'] ?? null,
+            'active'        => $data['active'] ?? true,
+        ]);
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MasterData;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -12,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        
+        $categories = Category::all();
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -28,7 +30,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'division_id'   => 'required|exists:divisions,id',
+            'name'          => 'required|string|max:255',
+            'description'   => 'nullable|string',
+            'active'        => 'boolean',
+        ]);
+
+        Category::create([
+            'division_id'   => $request->division_id,
+            'name'          => $request->name,
+            'description'   => $request->description,
+            'active'        => $request->active,
+        ]);
+
+        return redirect()->route('categories.index')->with('success', 'Kategori berhasil ditambahkan.');
+
     }
 
     /**
